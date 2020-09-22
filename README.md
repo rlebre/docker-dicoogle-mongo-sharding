@@ -4,7 +4,9 @@ A simple sharded Mongo Cluster with a replication factor of 2 running in `docker
 
 Designed to be quick and simple to get a local or test environment up and running. Needless to say... DON'T USE THIS IN PRODUCTION!
 
-Heavily inspired by [https://github.com/jfollenfant/mongodb-sharding-docker-compose](https://github.com/jfollenfant/mongodb-sharding-docker-compose)
+Credits to for the inspiration and guidance:
+- [jfollenfant/mongodb-sharding-docker-compose](https://github.com/jfollenfant/mongodb-sharding-docker-compose)
+- [chefsplate/mongo-shard-docker-compose](https://github.com/chefsplate/mongo-shard-docker-compose)
 
 ### Mongo Components
 

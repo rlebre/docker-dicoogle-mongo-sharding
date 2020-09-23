@@ -1,5 +1,4 @@
 # Mongo Sharded Cluster with Docker Compose
-=========================================
 
 A :whale: &nbsp; *docker-compose* descriptor to create the following components:
 

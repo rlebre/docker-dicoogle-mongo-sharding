@@ -1,0 +1,31 @@
+version: '2'
+services:
+
+  ## Shards
+  shard02a:
+    image: mongo:4.4.1
+    command: mongod --auth --port 8081 --shardsvr --bind_ip_all --replSet shard02 --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
+    volumes:
+      - ./mongodb.key:/mongodb.key
+      - ./scripts:/scripts
+    ports:
+      - "8081:8081"
+    networks:
+      - all
+  shard02b:
+    image: mongo:4.4.1
+    command: mongod --auth --port 8082 --shardsvr --bind_ip_all --replSet shard02 --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
+    volumes:
+      - ./mongodb.key:/mongodb.key
+      - ./scripts:/scripts
+    ports:
+      - "8082:8082"
+    networks:
+      - all
+
+networks:
+  all:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.1.0.0/16

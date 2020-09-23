@@ -14,4 +14,4 @@ docker-compose up -d
 sleep 10
 
 ## Shard servers setup
-docker-compose exec shard01a sh -c "mongo --port 8081 < /scripts/dicoogle-mongo-shard01.init.js"
+docker-compose exec shard03a sh -c "mongo --port 8081 < /scripts/dicoogle-mongo-shard03.init.js"

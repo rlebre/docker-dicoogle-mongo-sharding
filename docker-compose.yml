@@ -1,32 +1,6 @@
 version: '2'
 services:
 
-  ## Config Servers
-  config01:
-    image: mongo:4.4.1
-    command: mongod --auth --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    networks:
-      - all
-  config02:
-    image: mongo:4.4.1
-    command: mongod --auth --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    networks:
-      - all
-  config03:
-    image: mongo:4.4.1
-    command: mongod --auth --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    networks:
-      - all
-
   ## Shards
   shard01a:
     image: mongo:4.4.1
@@ -36,66 +10,13 @@ services:
       - ./scripts:/scripts
     networks:
       - all
+      
   shard01b:
     image: mongo:4.4.1
     command: mongod --auth --port 27018 --shardsvr --replSet shard01 --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
     volumes:
       - ./mongodb.key:/mongodb.key
       - ./scripts:/scripts
-    networks:
-      - all
-  shard02a:
-    image: mongo:4.4.1
-    command: mongod --auth --port 27019 --shardsvr --replSet shard02 --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    networks:
-      - all
-  shard02b:
-    image: mongo:4.4.1
-    command: mongod --auth --port 27019 --shardsvr --replSet shard02 --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    networks:
-      - all
-  shard03a:
-    image: mongo:4.4.1
-    command: mongod --auth --port 27020 --shardsvr --replSet shard03 --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    networks:
-      - all
-  shard03b:
-    image: mongo:4.4.1
-    command: mongod --auth --port 27020 --shardsvr --replSet shard03 --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    networks:
-      - all
-  ## Router
-  
-  router:
-    image: mongo:4.4.1
-    command: mongos --port 8081 --configdb configserver/config01:27017,config02:27017,config03:27017 --bind_ip_all  --keyFile /mongodb.key
-    ports:
-      - "8081:8081"
-    volumes:
-      - ./mongodb.key:/mongodb.key
-      - ./scripts:/scripts
-    depends_on:
-      - config01
-      - config02
-      - config03
-      - shard01a
-      - shard01b
-      - shard02a
-      - shard02b
-      - shard03a
-      - shard03b
     networks:
       - all
 

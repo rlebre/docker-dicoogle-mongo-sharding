@@ -4,7 +4,7 @@ services:
   ## Config Servers
   config01:
     image: mongo:4.4.1
-    command: mongod --auth --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
+    command: mongod --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16 --keyFile /mongodb.key
     volumes:
       - ./mongodb.key:/mongodb.key
       - ./scripts:/scripts
@@ -12,7 +12,7 @@ services:
       - all
   config02:
     image: mongo:4.4.1
-    command: mongod --auth --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16 #--keyFile /mongodb.key
+    command: mongod --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16
     volumes:
       - ./mongodb.key:/mongodb.key
       - ./scripts:/scripts
@@ -20,7 +20,7 @@ services:
       - all
   config03:
     image: mongo:4.4.1
-    command: mongod --auth --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16 #--keyFile /mongodb.key
+    command: mongod --port 27017 --configsvr --replSet configserver --dbpath /data/db --oplogSize 16
     volumes:
       - ./mongodb.key:/mongodb.key
       - ./scripts:/scripts
@@ -30,7 +30,7 @@ services:
   ## Router
   router:
     image: mongo:4.4.1
-    command: mongos --port 8081 --configdb configserver/config01:27017,config02:27017,config03:27017 --bind_ip_all # --keyFile /mongodb.key
+    command: mongos --port 8081 --configdb configserver/config01:27017,config02:27017,config03:27017 --bind_ip_all
     ports:
       - "8081:8081"
     volumes:

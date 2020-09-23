@@ -4,7 +4,7 @@ services:
   ## Shards
   shard02a:
     image: mongo:4.4.1
-    command: mongod --port 8081 --shardsvr --bind_ip_all --replSet shard02 --dbpath /data/db --oplogSize 16 
+    command: mongod --port 8081 --shardsvr --bind_ip_all --replSet shard02 --dbpath /data/db --oplogSize 16 --auth --keyFile /mongodb.key
     volumes:
       - ./mongodb.key:/mongodb.key
       - ./scripts:/scripts
@@ -14,7 +14,7 @@ services:
       - all
   shard02b:
     image: mongo:4.4.1
-    command: mongod --port 8082 --shardsvr --bind_ip_all --replSet shard02 --dbpath /data/db --oplogSize 16
+    command: mongod --port 8082 --shardsvr --bind_ip_all --replSet shard02 --dbpath /data/db --oplogSize 16 --auth --keyFile /mongodb.key
     volumes:
       - ./mongodb.key:/mongodb.key
       - ./scripts:/scripts

@@ -4,9 +4,12 @@
 export COMPOSE_PROJECT_NAME=dicooglemongo
 
 ## Generate global auth key between cluster nodes
-openssl rand -base64 756 > mongodb.key
-chmod 400 mongodb.key
-sudo chown 999:999 mongodb.key
+# openssl rand -base64 756 > mongodb.key
+# chmod 400 mongodb.key
+# sudo chown 999:999 mongodb.key
+# sudo cp mongodb.key ../host-1/
+# sudo cp mongodb.key ../host-2/
+# sudo cp mongodb.key ../host-3/
 
 ## Start the docker-compose.yml stack
 docker-compose up -d 

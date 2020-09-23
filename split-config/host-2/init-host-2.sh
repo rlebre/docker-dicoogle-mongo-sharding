@@ -4,7 +4,7 @@
 export COMPOSE_PROJECT_NAME=dicooglemongo
 
 ## Generate global auth key between cluster nodes
-openssl rand -base64 756 > mongodb.key
+#openssl rand -base64 756 > mongodb.key
 chmod 400 mongodb.key
 sudo chown 999:999 mongodb.key
 

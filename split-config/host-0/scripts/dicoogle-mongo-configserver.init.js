@@ -4,9 +4,9 @@ rs.initiate(
       configsvr: true,
       version: 1,
       members: [
-         { _id: 0, host: "config01:27017" },
-         { _id: 1, host: "config02:27017" },
-         { _id: 2, host: "config03:27017" }
+         { _id: 0, host: "172.27.150.39:8082" },
+         { _id: 1, host: "172.27.150.39:8083" },
+         { _id: 2, host: "172.27.150.39:8084" }
       ]
    }
 )
